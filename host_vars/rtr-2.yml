@@ -1,0 +1,36 @@
+---
+
+hostname: rtr-2
+domain_name: cisco.com
+
+loopback:
+  address: 10.0.0.2
+  mask: 255.255.255.255
+
+interfaces:
+  2:
+    alias: connection rtr-3
+    address: 10.0.23.2
+    mask: 255.255.255.0
+
+  3:
+    alias: connection rtr-1
+    address: 10.0.12.2
+    mask: 255.255.255.0
+
+  4:
+    alias: connection rtr-4
+    address: 10.0.24.2
+    mask: 255.255.255.0
+
+bgp:
+  asn: 65000
+  neighbor:
+    - {address: 10.0.12.1, remote_as: 65001}
+    - {address: 10.0.24.4, remote_as: 65002}
+  networks:
+    - {network: 10.0.23.0, mask: 255.255.255.0}
+    - {network: 10.0.12.0, mask: 255.255.255.0}
+    - {network: 10.0.24.0, mask: 255.255.255.0}
+    - {network: 10.0.0.2, mask: 255.255.255.255}
+  maxpath: 2

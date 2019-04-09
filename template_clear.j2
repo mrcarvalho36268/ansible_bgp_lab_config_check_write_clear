@@ -1,0 +1,13 @@
+{% if loopback is defined %}
+no interface Loopback0
+{% endif %}
+
+{% if interfaces is defined %}
+{% for port, value in interfaces.items() %}
+default interface GigabitEthernet{{ port }}
+{% endfor %}
+{% endif %}
+
+{% if bgp is defined %}
+no router bgp {{ bgp.asn }}
+{% endif %}

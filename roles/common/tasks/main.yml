@@ -1,0 +1,4 @@
+---
+- name: deploys common configuration
+  ios_config:
+    src: common.j2

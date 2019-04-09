@@ -1,0 +1,23 @@
+---
+## Playbook to clear up the configs
+
+- hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: "Clear configs - interfaces and routing process"
+      ios_config:
+        src: template_clear.j2
+
+#  tasks:
+#    - name: clear configs on rtr-1
+#      vars:
+#        command_list:
+#          - no router bgp 65001
+#          - default interface g0/2
+#          - default interface g0/3
+#          - no interface lo0
+#      ios_config:
+#        commands: "{{ command_list }}"
+#      when: "'rtr-1' in inventory_hostname"
+...
